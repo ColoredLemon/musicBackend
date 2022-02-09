@@ -1,4 +1,4 @@
-package com.musicBackend.musicBackend.models;
+package com.musicBackend.musicBackend.security;
 
 import javax.persistence.*;
 
@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class Login {
     @Id
     @SequenceGenerator(
-            name = "listener_sequence",
-            sequenceName = "listener_sequence",
+            name = "login_sequence",
+            sequenceName = "login_sequence",
             allocationSize = 1
     )
 
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "listener_sequence"
+            generator = "login_sequence"
     )
 
     private Long id;

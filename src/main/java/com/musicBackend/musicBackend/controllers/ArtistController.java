@@ -17,14 +17,21 @@ public class ArtistController {
         this.artistService = artistService;
     }
 
-    @GetMapping
+    @GetMapping//("getArtists")
     public List<Artist> getArtist(){
+
         return artistService.getArtist();
     }
 
-    @PostMapping
+    @PostMapping("addArtist")
     public void registerNewArtist(@RequestBody Artist artist) {
 
         artistService.addNewArtist(artist);
+    }
+
+    @DeleteMapping(path = "{artistId}")
+    public void deleteArtist(@PathVariable("artistId") Long artistId){
+
+        artistService.deleteArtist(artistId);
     }
 }

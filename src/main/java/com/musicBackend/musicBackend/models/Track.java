@@ -8,14 +8,14 @@ import java.util.Date;
 public class Track {
     @Id
     @SequenceGenerator(
-            name = "role_sequence",
-            sequenceName = "role_sequence",
+            name = "track_sequence",
+            sequenceName = "track_sequence",
             allocationSize = 1
     )
 
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "role_sequence"
+            generator = "track_sequence"
     )
 
     private Long id;

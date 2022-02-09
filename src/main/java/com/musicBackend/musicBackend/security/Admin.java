@@ -1,4 +1,4 @@
-package com.musicBackend.musicBackend.models;
+package com.musicBackend.musicBackend.security;
 
 import javax.persistence.*;
 
@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class Admin {
     @Id
     @SequenceGenerator(
-            name = "member_sequence",
-            sequenceName = "member_sequence",
+            name = "admin_sequence",
+            sequenceName = "admin_sequence",
             allocationSize = 1
     )
 
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "member_sequence"
+            generator = "admin_sequence"
     )
 
     private Long id;

@@ -1,4 +1,4 @@
-package com.musicBackend.musicBackend.models;
+package com.musicBackend.musicBackend.security;
 
 import javax.persistence.*;
 

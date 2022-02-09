@@ -1,5 +1,4 @@
 package com.musicBackend.musicBackend.configurations;
-
 import com.musicBackend.musicBackend.models.Artist;
 import com.musicBackend.musicBackend.models.member;
 import com.musicBackend.musicBackend.repositories.artistRepository;
@@ -13,7 +12,7 @@ import java.time.Month;
 import java.util.List;
 
 @Configuration
-public class memberConfig {
+public class insertObjectsConfiguration {
     @Bean
     CommandLineRunner commandLineRunner(memberRepository memberRepository, artistRepository artistRepository) {
         return args -> {

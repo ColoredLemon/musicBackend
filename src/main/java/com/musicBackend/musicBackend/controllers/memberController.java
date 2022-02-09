@@ -23,7 +23,7 @@ public class memberController {
             return memberService.getMembers();
         }
 
-        @PostMapping
+        @PostMapping(path = "registermember")
         public void registerNewMember(@RequestBody member member) {
 
             memberService.addNewMember(member);

@@ -19,7 +19,6 @@ public class artistService {
     }
 
     public List<Artist> getArtist() {
-
         return artistRepository.findAll();
     }
 
@@ -30,5 +29,13 @@ public class artistService {
         }
         artistRepository.save(artist);
         System.out.println(artist);
+    }
+
+    public void deleteArtist(Long artistId) {
+        boolean exists = artistRepository.existsById(artistId);
+        if(!exists){
+            throw new IllegalStateException("Artist with id " + artistId + " does not exists.");
+        }
+        artistRepository.deleteById((artistId));
     }
 }
