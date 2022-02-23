@@ -1,4 +1,4 @@
-package com.musicBackend.musicBackend.models;
+package com.musicBackend.musicBackend.services.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.Period;
 
 @Entity
 @Table
-public class member implements UserDetails {
+public class member {
 
     @Id
     @SequenceGenerator(
