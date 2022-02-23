@@ -1,12 +1,25 @@
 package com.musicBackend.musicBackend.models;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table
-public class member {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class member implements UserDetails {
 
     @Id
     @SequenceGenerator(
@@ -25,36 +38,104 @@ public class member {
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDate dob;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private AppUserRole appUserRole;
+    private LocalDate dob = null;
     @Transient
-    private Integer age;
+    private Integer age = null;
+    private Boolean locked = false;
+    private Boolean enabled = true;
+    boolean accountNonExpired = true;
+    boolean credentialsNonExpired = true;
+    boolean accountNonLocked = true;
 
     public member(){
 
     }
 
-    public member(String username, String firstName, String lastName, String email, LocalDate dob) {
+    public member(String username,
+                  String firstName,
+                  String lastName,
+                  String password,
+                  String email,
+                  LocalDate dob,
+                  AppUserRole appUserRole) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.dob = dob;
+        this.appUserRole = appUserRole;
 
     }
 
-    public member(Long id, String username, String firstName, String lastName, String email, LocalDate dob) {
+    public member(Long id,
+                  String username,
+                  String firstName,
+                  String lastName,
+                  String email,
+                  String password,
+                  LocalDate dob,
+                  AppUserRole appUserRole) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.dob = dob;
-
+        this.appUserRole = appUserRole;
 
     }
 
+    public member(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.appUserRole = appUserRole;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+    @Override
     public String getUsername() {
-        return username;
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public void setUsername(String username) {

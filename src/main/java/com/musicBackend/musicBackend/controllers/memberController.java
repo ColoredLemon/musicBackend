@@ -20,7 +20,7 @@ public class memberController {
         @GetMapping
         public List<member> getMembers(){
 
-            return memberService.getMembers();
+            return memberService.getListOfMembers();
         }
 
         @PostMapping(path = "registermember")
