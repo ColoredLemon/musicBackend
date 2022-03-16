@@ -1,9 +1,7 @@
 package com.musicBackend.musicBackend.services;
 
-import com.musicBackend.musicBackend.email.EmailSender;
 import com.musicBackend.musicBackend.models.AppUserRole;
-import com.musicBackend.musicBackend.models.member;
-import com.musicBackend.musicBackend.services.memberService;
+import com.musicBackend.musicBackend.models.Member;
 import com.musicBackend.musicBackend.security.RegistrationRequest;
 import com.musicBackend.musicBackend.security.token.ConfirmationToken;
 import com.musicBackend.musicBackend.security.token.ConfirmationTokenService;
@@ -12,14 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Locale;
 
 @Service
 @AllArgsConstructor
 public class RegistrationService {
 
     private final EmailValidator emailValidator;
-    private final memberService memberService;
+    private final MemberService memberService;
     private final ConfirmationTokenService confirmationTokenService;
     //private final EmailSender emailSender;
 
@@ -31,7 +28,7 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
         String token = memberService.signUpMember(
-                new member(
+                new Member(
                 request.getFirstName(),
                 request.getLastName(),
                 request.getEmail(),

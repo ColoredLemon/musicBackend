@@ -1,18 +1,19 @@
 package com.musicBackend.musicBackend.controllers;
 
 import com.musicBackend.musicBackend.security.Login;
+import com.musicBackend.musicBackend.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/login")
+@RequestMapping(path = "login")
 public class LoginController {
 
-    private final com.musicBackend.musicBackend.services.loginService loginService;
+    private final LoginService loginService;
     @Autowired
-    public LoginController(com.musicBackend.musicBackend.services.loginService loginService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
     @GetMapping

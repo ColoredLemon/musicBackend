@@ -1,19 +1,20 @@
 package com.musicBackend.musicBackend.controllers;
 
 import com.musicBackend.musicBackend.models.Artist;
+import com.musicBackend.musicBackend.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/artist")
+@RequestMapping(path = "artist")
 public class ArtistController {
 
-    private final com.musicBackend.musicBackend.services.artistService artistService;
+    private final ArtistService artistService;
 
     @Autowired
-    public ArtistController(com.musicBackend.musicBackend.services.artistService artistService) {
+    public ArtistController(ArtistService artistService) {
         this.artistService = artistService;
     }
 

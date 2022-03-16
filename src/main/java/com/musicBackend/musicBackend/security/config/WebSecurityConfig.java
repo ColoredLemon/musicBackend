@@ -1,6 +1,6 @@
 package com.musicBackend.musicBackend.security.config;
 
-import com.musicBackend.musicBackend.services.memberService;
+import com.musicBackend.musicBackend.services.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +15,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-    private final com.musicBackend.musicBackend.services.memberService memberService;
+    private final MemberService memberService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
                 http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v*/registration/**")
+                .antMatchers("**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()

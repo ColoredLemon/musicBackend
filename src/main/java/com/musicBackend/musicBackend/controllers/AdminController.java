@@ -1,19 +1,20 @@
 package com.musicBackend.musicBackend.controllers;
 
 import com.musicBackend.musicBackend.security.Admin;
+import com.musicBackend.musicBackend.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/admin")
+@RequestMapping(path = "admin")
 public class AdminController {
 
-    private final com.musicBackend.musicBackend.services.adminService adminService;
+    private final AdminService adminService;
 
     @Autowired
-    public AdminController(com.musicBackend.musicBackend.services.adminService adminService) {
+    public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
 

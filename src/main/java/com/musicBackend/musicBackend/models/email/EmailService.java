@@ -1,4 +1,4 @@
-package com.musicBackend.musicBackend.email;
+package com.musicBackend.musicBackend.models.email;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

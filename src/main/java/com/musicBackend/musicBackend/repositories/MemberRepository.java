@@ -1,6 +1,6 @@
 package com.musicBackend.musicBackend.repositories;
 
-import com.musicBackend.musicBackend.models.member;
+import com.musicBackend.musicBackend.models.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,17 +11,17 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface memberRepository extends JpaRepository<member, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    @Query("Select s FROM member s WHERE s.email = ?1")
+    @Query("Select s FROM Member s WHERE s.email = ?1")
 
-    Optional<member> findmemberByEmail(String email);
+    Optional<Member> findmemberByEmail(String email);
 
-    Optional<member> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 
     @Transactional
     @Modifying
-    @Query("UPDATE member a " +
+    @Query("UPDATE Member a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableMember(String email);
 

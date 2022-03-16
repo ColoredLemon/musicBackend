@@ -1,6 +1,6 @@
 package com.musicBackend.musicBackend.security.token;
 
-import com.musicBackend.musicBackend.models.member;
+import com.musicBackend.musicBackend.models.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,12 +42,12 @@ public class ConfirmationToken {
             nullable = false,
             name = "member_id"
     )
-    private member member;
+    private Member member;
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiresAt,
-                             member member) {
+                             Member member) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;

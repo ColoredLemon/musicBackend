@@ -2,19 +2,20 @@ package com.musicBackend.musicBackend.controllers;
 
 
 import com.musicBackend.musicBackend.models.Track;
+import com.musicBackend.musicBackend.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/track")
+@RequestMapping(path = "track")
 public class TrackController {
 
-    private final com.musicBackend.musicBackend.services.trackService trackService;
+    private final TrackService trackService;
 
     @Autowired
-    public TrackController(com.musicBackend.musicBackend.services.trackService trackService) {
+    public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
     @GetMapping

@@ -1,4 +1,5 @@
 package com.musicBackend.musicBackend.services;
+import com.musicBackend.musicBackend.repositories.LoginRepository;
 import com.musicBackend.musicBackend.security.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class loginService {
-    private final com.musicBackend.musicBackend.repositories.loginRepository loginRepository;
+public class LoginService {
+    private final LoginRepository loginRepository;
 
     @Autowired
-    public loginService(com.musicBackend.musicBackend.repositories.loginRepository loginRepository) {
+    public LoginService(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
     public List<Login> getLogin() {

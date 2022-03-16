@@ -2,7 +2,6 @@ package com.musicBackend.musicBackend.models;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +18,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class member implements UserDetails {
+public class Member implements UserDetails {
 
     @Id
     @SequenceGenerator(
@@ -41,43 +40,37 @@ public class member implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-    private LocalDate dob = null;
-    @Transient
-    private Integer age = null;
     private Boolean locked = false;
     private Boolean enabled = true;
     boolean accountNonExpired = true;
     boolean credentialsNonExpired = true;
     boolean accountNonLocked = true;
 
-    public member(){
+    public Member(){
 
     }
 
-    public member(String username,
+    public Member(String username,
                   String firstName,
                   String lastName,
                   String password,
                   String email,
-                  LocalDate dob,
                   AppUserRole appUserRole) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
         this.appUserRole = appUserRole;
 
     }
 
-    public member(Long id,
+    public Member(Long id,
                   String username,
                   String firstName,
                   String lastName,
                   String email,
                   String password,
-                  LocalDate dob,
                   AppUserRole appUserRole) {
         this.id = id;
         this.username = username;
@@ -85,12 +78,11 @@ public class member implements UserDetails {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
         this.appUserRole = appUserRole;
 
     }
 
-    public member(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
+    public Member(String firstName, String lastName, String email, String password,AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -174,22 +166,6 @@ public class member implements UserDetails {
         this.email = email;
     }
 
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     @Override
     public String toString() {
         return "member{" +
@@ -198,8 +174,6 @@ public class member implements UserDetails {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 package com.musicBackend.musicBackend.services;
 
-import com.musicBackend.musicBackend.models.member;
-import com.musicBackend.musicBackend.repositories.memberRepository;
+import com.musicBackend.musicBackend.models.Member;
+import com.musicBackend.musicBackend.repositories.MemberRepository;
 import com.musicBackend.musicBackend.security.token.ConfirmationToken;
 import com.musicBackend.musicBackend.security.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -21,27 +21,27 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class memberService implements UserDetailsService {
+public class MemberService implements UserDetailsService {
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
-    private final memberRepository memberRepository;
+    private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 
     @Autowired
-    public memberService(com.musicBackend.musicBackend.repositories.memberRepository memberRepository, ConfirmationTokenService confirmationTokenService) {
+    public MemberService(MemberRepository memberRepository, ConfirmationTokenService confirmationTokenService) {
         this.memberRepository = memberRepository;
         this.confirmationTokenService = confirmationTokenService;
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     }
 
-    public List<member> getListOfMembers() {
+    public List<Member> getListOfMembers() {
         return memberRepository.findAll();
     }
 
-    public void addNewMember(member member) {
-        Optional<member> memberOptional = memberRepository.findmemberByEmail(member.getEmail());
+    public void addNewMember(Member member) {
+        Optional<Member> memberOptional = memberRepository.findmemberByEmail(member.getEmail());
         if (memberOptional.isPresent()) {
             throw new IllegalStateException("email is being used");
         }
@@ -59,14 +59,14 @@ public class memberService implements UserDetailsService {
 
     @Transactional
     public void updateMember(Long memberId, String name, String email) {
-        member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalStateException(
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalStateException(
                 "Member with id " + memberId + " does not exists"));
         if (name != null && name.length() > 0 && !Objects.equals(member.getFirstName(), name)){
             member.setFirstName(name);
         }
 
         if (email != null && email.length() > 0 && !Objects.equals(member.getEmail(), email)){
-            Optional<member> memberOptional = memberRepository.findmemberByEmail(email);
+            Optional<Member> memberOptional = memberRepository.findmemberByEmail(email);
             if (memberOptional.isPresent()){
                 throw new IllegalStateException("email is taken");
             }
@@ -83,7 +83,7 @@ public class memberService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
     @Transactional
-    public String signUpMember(member member) {
+    public String signUpMember(Member member) {
         boolean userExists = memberRepository
                 .findByEmail(member.getEmail())
                 .isPresent();

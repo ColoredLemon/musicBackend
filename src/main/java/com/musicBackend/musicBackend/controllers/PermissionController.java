@@ -1,18 +1,19 @@
 package com.musicBackend.musicBackend.controllers;
 
 import com.musicBackend.musicBackend.security.Permission;
+import com.musicBackend.musicBackend.services.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/permission")
+@RequestMapping(path = "permission")
 public class PermissionController {
 
-    private final com.musicBackend.musicBackend.services.permissionService permissionService;
+    private final PermissionService permissionService;
     @Autowired
-    public PermissionController(com.musicBackend.musicBackend.services.permissionService permissionService) {
+    public PermissionController(PermissionService permissionService) {
         this.permissionService = permissionService;
     }
 

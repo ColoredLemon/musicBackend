@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface listenerRepository extends JpaRepository<Listener, Long> {
+public interface ListenerRepository extends JpaRepository<Listener, Long> {
     @Query("Select s FROM Listener s WHERE s.email = ?1")
     Optional<Listener> findListenerByEmail(String email);
 }

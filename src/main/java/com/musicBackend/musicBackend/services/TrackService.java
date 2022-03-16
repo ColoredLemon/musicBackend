@@ -1,16 +1,17 @@
 package com.musicBackend.musicBackend.services;
 
 import com.musicBackend.musicBackend.models.Track;
+import com.musicBackend.musicBackend.repositories.TrackRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class trackService {
-    private final com.musicBackend.musicBackend.repositories.trackRepository trackRepository;
+public class TrackService {
+    private final TrackRepository trackRepository;
 
-    public trackService(com.musicBackend.musicBackend.repositories.trackRepository trackRepository) {
+    public TrackService(TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
     }
     public List<Track> getTracks() {

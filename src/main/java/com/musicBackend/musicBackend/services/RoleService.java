@@ -1,4 +1,5 @@
 package com.musicBackend.musicBackend.services;
+import com.musicBackend.musicBackend.repositories.RoleRepository;
 import com.musicBackend.musicBackend.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,13 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class roleService {
+public class RoleService {
 
 
-    private final com.musicBackend.musicBackend.repositories.roleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public roleService(com.musicBackend.musicBackend.repositories.roleRepository roleRepository) {
+    public RoleService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
     public List<Role> getRole() {
