@@ -33,6 +33,20 @@ public class memberService {
         System.out.println(member);
     }
 
+     
+    public void processOAuthPostLogin(String username) {
+        Optional<member> existMember = memberRepository.findmemberByEmail(username);
+         
+        if (existMember == null) {
+        	member  newMember = new member();
+            newMember.setUsername(username);
+            
+             
+            memberRepository.save(newMember);        
+        }
+         
+    }  
+
     public void deleteMember(Long memberId) {
         boolean exists = memberRepository.existsById(memberId);
         if(!exists){

@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface genreRepository extends JpaRepository<Genre, Long> {
     @Query("Select s FROM Genre s WHERE s.id = ?1")
     Optional<Genre> findGenreById(Long id);
+
 }

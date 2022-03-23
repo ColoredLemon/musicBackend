@@ -1,12 +1,17 @@
 package com.musicBackend.musicBackend.models;
 
 import javax.persistence.*;
+
+import org.springframework.stereotype.Service;
+
+
 import java.time.LocalDate;
 import java.time.Period;
 
+@Service
 @Entity
 @Table
-public class member implements UserDetails {
+public class member {
 
     @Id
     @SequenceGenerator(

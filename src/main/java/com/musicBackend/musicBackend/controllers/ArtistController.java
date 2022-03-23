@@ -20,7 +20,7 @@ public class ArtistController {
     @GetMapping//("getArtists")
     public List<Artist> getArtist(){
 
-        return artistService.getArtist();
+        return artistService.getArtists();
     }
 
     @PostMapping("addArtist")

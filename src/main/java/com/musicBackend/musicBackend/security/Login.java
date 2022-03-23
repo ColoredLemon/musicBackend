@@ -18,9 +18,13 @@ public class Login {
     )
 
     private Long id;
-    private String loginUsername;
-    private String userPassword;
+    
 
+	private String loginUsername;
+    private String userPassword;
+    
+
+    
     public Login(String loginUsername, String userPassword) {
         this.loginUsername = loginUsername;
         this.userPassword = userPassword;

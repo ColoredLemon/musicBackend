@@ -1,0 +1,38 @@
+server:
+  error:
+    include-message: always
+  port: 8181
+spring:
+  datasource:
+    password: Omkar@_3218605
+    url: jdbc:postgresql://localhost:5432/ics499
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+        format_sql: true
+    show-sql: true
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
+
+
+security:
+  oauth2:
+    client:
+      client-id: 2726614517635171
+      client-secret: dff8d28c64cddd5cbd3698566073e00b
+      accessTokenUri: https://graph.facebook.com/oauth/access_token
+      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://graph.facebook.com/me?fields=id,name,email
+   
+      
+      

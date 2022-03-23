@@ -1,7 +1,11 @@
 package com.musicBackend.musicBackend.models;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table
@@ -25,8 +29,20 @@ public class Artist {
     private int followerCount;
     private String artistNickname;
     private LocalDate dateJoined;
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "music_artist", joinColumns = @JoinColumn(name = "artist_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
+    private Set<Music> musics;
+    
+    public Set<Music> getMusics() {
+		return musics;
+	}
 
-    public Artist(String artistName, String artistEmail, String recordAffiliation, int followerCount, String artistNickname, LocalDate dateJoined) {
+	public void setMusics(Set<Music> musics) {
+		this.musics = musics;
+	}
+
+	public Artist(String artistName, String artistEmail, String recordAffiliation, int followerCount, String artistNickname, LocalDate dateJoined) {
         this.artistName = artistName;
         this.artistEmail = artistEmail;
         this.recordAffiliation = recordAffiliation;

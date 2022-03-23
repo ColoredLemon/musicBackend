@@ -4,7 +4,7 @@ import com.musicBackend.musicBackend.models.Music;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "api/v1/music")
@@ -15,12 +15,21 @@ public class MusicController {
     public MusicController(com.musicBackend.musicBackend.services.musicService musicService) {
         this.musicService = musicService;
     }
+    
+    
+    
     @GetMapping
     public List<Music> getMusics(){
 
-        return musicService.getMusic();
+        return musicService.getMusics();
     }
+    
+    @GetMapping(params = "musicId")
+    public Music getMusic(@RequestParam(name="musicId") Long id){
 
+        return musicService.getMusic(id);
+    }
+    
     @PostMapping(path = "registermusic")
     public void registerNewMusic(@RequestBody Music music) {
 

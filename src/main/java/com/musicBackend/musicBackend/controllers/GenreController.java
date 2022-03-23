@@ -19,7 +19,7 @@ public class GenreController {
     @GetMapping
     public List<Genre> getGenres(){
 
-        return genreService.getGenre();
+        return genreService.getGenres();
     }
 
     @PostMapping(path = "registerGenre")

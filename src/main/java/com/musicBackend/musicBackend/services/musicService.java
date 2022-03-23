@@ -16,7 +16,7 @@ public class musicService {
     public musicService(com.musicBackend.musicBackend.repositories.musicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
-    public List<Music> getMusic() {
+    public List<Music> getMusics() {
         return musicRepository.findAll();
     }
 
@@ -35,5 +35,10 @@ public class musicService {
             throw new IllegalStateException("music with id " + musicId + " does not exists.");
         }
         musicRepository.deleteById((musicId));
+    }
+    
+    public Music getMusic(Long id) {
+       Music music =musicRepository.findMusicById(id).orElse(null);
+       return music;
     }
 }

@@ -3,6 +3,7 @@ package com.musicBackend.musicBackend.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
@@ -25,6 +26,29 @@ public class Music {
     private Date musicDP;
     private String musicDesc;
     private float musicLength;
+    
+    @ManyToMany(mappedBy= "musics")
+    private Set<Artist> artists;
+    
+    public Set<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(Set<Artist> artists) {
+		this.artists = artists;
+	}
+
+	public Set<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Set<Genre> genres) {
+		this.genres = genres;
+	}
+
+	@ManyToMany(mappedBy="musics")
+    private Set<Genre> genres;
+    
 
     public Music(String musicName, String musicType, Date musicDP, String musicDesc, float musicLength) {
         this.musicName = musicName;

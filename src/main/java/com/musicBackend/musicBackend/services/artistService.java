@@ -1,6 +1,7 @@
 package com.musicBackend.musicBackend.services;
 
 import com.musicBackend.musicBackend.models.Artist;
+import com.musicBackend.musicBackend.models.Music;
 import com.musicBackend.musicBackend.repositories.artistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,17 @@ public class artistService {
         this.artistRepository = artistRepository;
     }
 
-    public List<Artist> getArtist() {
+    public List<Artist> getArtists() {
         return artistRepository.findAll();
     }
-
+    
+    public Artist getArtist(Long id) {
+        Artist artist =artistRepository.findArtistById(id).orElse(null);
+        return artist;
+     }
+    
     public void addNewArtist(Artist artist) {
-        Optional<Artist> artistOptional = artistRepository.findArtistByEmail(artist.getArtistEmail());
+        Optional<Artist> artistOptional = artistRepository.findArtistById(artist.getId());
         if (artistOptional.isPresent()) {
             throw new IllegalStateException("email is being used");
         }
