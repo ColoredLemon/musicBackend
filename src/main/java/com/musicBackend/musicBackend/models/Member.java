@@ -1,24 +1,12 @@
 package com.musicBackend.musicBackend.models;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 @Table
-@Getter
-@Setter
-@EqualsAndHashCode
-public class Member implements UserDetails {
+public class member implements UserDetails {
 
     @Id
     @SequenceGenerator(
@@ -37,97 +25,36 @@ public class Member implements UserDetails {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    @Enumerated(EnumType.STRING)
-    private AppUserRole appUserRole;
-    private Boolean locked = false;
-    private Boolean enabled = true;
-    boolean accountNonExpired = true;
-    boolean credentialsNonExpired = true;
-    boolean accountNonLocked = true;
+    private LocalDate dob;
+    @Transient
+    private Integer age;
 
-    public Member(){
+    public member(){
 
     }
 
-    public Member(String username,
-                  String firstName,
-                  String lastName,
-                  String password,
-                  String email,
-                  AppUserRole appUserRole) {
+    public member(String username, String firstName, String lastName, String email, LocalDate dob) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
-        this.appUserRole = appUserRole;
+        this.dob = dob;
 
     }
 
-    public Member(Long id,
-                  String username,
-                  String firstName,
-                  String lastName,
-                  String email,
-                  String password,
-                  AppUserRole appUserRole) {
+    public member(Long id, String username, String firstName, String lastName, String email, LocalDate dob) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
-        this.appUserRole = appUserRole;
+        this.dob = dob;
+
 
     }
 
-    public Member(String firstName, String lastName, String email, String password,AppUserRole appUserRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.appUserRole = appUserRole;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(authority);
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-    @Override
     public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
+        return username;
     }
 
     public void setUsername(String username) {
@@ -166,6 +93,22 @@ public class Member implements UserDetails {
         this.email = email;
     }
 
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Integer getAge() {
+        return Period.between(this.dob, LocalDate.now()).getYears();
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "member{" +
@@ -174,6 +117,8 @@ public class Member implements UserDetails {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", dob=" + dob +
+                ", age=" + age +
                 '}';
     }
 }
