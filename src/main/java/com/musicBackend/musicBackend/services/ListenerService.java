@@ -1,7 +1,7 @@
 package com.musicBackend.musicBackend.services;
 
 import com.musicBackend.musicBackend.models.Listener;
-import com.musicBackend.musicBackend.repositories.listenerRepository;
+import com.musicBackend.musicBackend.repositories.ListenerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class listenerService {
+public class ListenerService {
 
-    private final com.musicBackend.musicBackend.repositories.listenerRepository listenerRepository;
+    private final ListenerRepository listenerRepository;
 
     @Autowired
-    public listenerService(listenerRepository listenerRepository) {
+    public ListenerService(ListenerRepository listenerRepository) {
         this.listenerRepository = listenerRepository;
     }
 

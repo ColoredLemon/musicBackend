@@ -1,7 +1,7 @@
 package com.musicBackend.musicBackend.services;
 
 import com.musicBackend.musicBackend.security.Admin;
-import com.musicBackend.musicBackend.repositories.adminRepository;
+import com.musicBackend.musicBackend.repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class adminService {
+public class AdminService {
 
-    private final adminRepository adminRepository;
+    private final AdminRepository adminRepository;
 
     @Autowired
-    public adminService(com.musicBackend.musicBackend.repositories.adminRepository adminRepository) {
+    public AdminService(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
 

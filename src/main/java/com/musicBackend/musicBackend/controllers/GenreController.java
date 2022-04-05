@@ -2,18 +2,19 @@ package com.musicBackend.musicBackend.controllers;
 
 
 import com.musicBackend.musicBackend.models.Genre;
+import com.musicBackend.musicBackend.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/genre")
+@RequestMapping(path = "genre")
 public class GenreController {
 
-    private final com.musicBackend.musicBackend.services.genreService genreService;
+    private final GenreService genreService;
     @Autowired
-    public GenreController(com.musicBackend.musicBackend.services.genreService genreService) {
+    public GenreController(GenreService genreService) {
         this.genreService = genreService;
     }
     @GetMapping

@@ -1,4 +1,5 @@
 package com.musicBackend.musicBackend.services;
+import com.musicBackend.musicBackend.repositories.PermissionRepository;
 import com.musicBackend.musicBackend.security.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,12 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class permissionService {
+public class PermissionService {
 
-    private final com.musicBackend.musicBackend.repositories.permissionRepository permissionRepository;
+    private final PermissionRepository permissionRepository;
 
     @Autowired
-    public permissionService(com.musicBackend.musicBackend.repositories.permissionRepository permissionRepository) {
+    public PermissionService(PermissionRepository permissionRepository) {
         this.permissionRepository = permissionRepository;
     }
     public List<Permission> getPermission() {

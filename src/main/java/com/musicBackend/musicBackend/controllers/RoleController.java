@@ -1,18 +1,19 @@
 package com.musicBackend.musicBackend.controllers;
 
 import com.musicBackend.musicBackend.security.Role;
+import com.musicBackend.musicBackend.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/role")
+@RequestMapping(path = "role")
 public class RoleController {
 
-    private final com.musicBackend.musicBackend.services.roleService roleService;
+    private final RoleService roleService;
     @Autowired
-    public RoleController(com.musicBackend.musicBackend.services.roleService roleService) {
+    public RoleController(RoleService roleService) {
         this.roleService = roleService;
     }
     @GetMapping
@@ -21,7 +22,7 @@ public class RoleController {
         return roleService.getRole();
     }
 
-    @PostMapping(path = "registerrole")
+    @PostMapping(path = "registerRole")
     public void registerNewRole(@RequestBody Role role) {
 
         roleService.addNewRole(role);

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface loginRepository extends JpaRepository<Login, Long> {
+public interface LoginRepository extends JpaRepository<Login, Long> {
     @Query("Select s FROM Login s WHERE s.id = ?1")
     Optional<Login> findLoginById(Long id);
 }
