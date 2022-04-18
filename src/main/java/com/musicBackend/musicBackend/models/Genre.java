@@ -1,6 +1,9 @@
 package com.musicBackend.musicBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -18,29 +21,43 @@ public class Genre {
     )
 
     private Long id;
-    private String Pop;
-    private String Rap;
-    private String Country;
-    private String Electronic;
-    private String Rock;
+    private String genreName;
+    private String country;
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "music_genre", joinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "music_id", referencedColumnName = "id"))
+    private Set<Music> musics;
 
-    public Genre(String pop, String rap, String country, String electronic, String rock, String jazz) {
-        Pop = pop;
-        Rap = rap;
-        Country = country;
-        Electronic = electronic;
-        Rock = rock;
-        Jazz = jazz;
+    public Set<Music> getMusics() {
+        return musics;
     }
 
-    public Genre(Long id, String pop, String rap, String country, String electronic, String rock, String jazz) {
+    public void setMusics(Set<Music> musics) {
+        this.musics = musics;
+    }
+
+
+
+    public Genre(Long id, String genreName,String country) {
         this.id = id;
-        Pop = pop;
-        Rap = rap;
-        Country = country;
-        Electronic = electronic;
-        Rock = rock;
-        Jazz = jazz;
+        this.genreName =genreName;
+        this.country = country;
+    }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Genre(){
@@ -55,66 +72,13 @@ public class Genre {
         this.id = id;
     }
 
-    public String getPop() {
-        return Pop;
-    }
-
-    public void setPop(String pop) {
-        Pop = pop;
-    }
-
-    public String getRap() {
-        return Rap;
-    }
-
-    public void setRap(String rap) {
-        Rap = rap;
-    }
-
-    public String getCountry() {
-        return Country;
-    }
-
-    public void setCountry(String country) {
-        Country = country;
-    }
-
-    public String getElectronic() {
-        return Electronic;
-    }
-
-    public void setElectronic(String electronic) {
-        Electronic = electronic;
-    }
-
-    public String getRock() {
-        return Rock;
-    }
-
-    public void setRock(String rock) {
-        Rock = rock;
-    }
-
-    public String getJazz() {
-        return Jazz;
-    }
-
-    public void setJazz(String jazz) {
-        Jazz = jazz;
-    }
-
-    private String Jazz;
 
     @Override
     public String toString() {
         return "Genre{" +
                 "id=" + id +
-                ", Pop='" + Pop + '\'' +
-                ", Rap='" + Rap + '\'' +
-                ", Country='" + Country + '\'' +
-                ", Electronic='" + Electronic + '\'' +
-                ", Rock='" + Rock + '\'' +
-                ", Jazz='" + Jazz + '\'' +
+                ", GenreName='" + genreName + '\'' +
+
                 '}';
     }
 }

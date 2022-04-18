@@ -21,6 +21,11 @@ public class MusicService {
         return musicRepository.findAll();
     }
 
+    public Music getMusic(Long id) {
+        Music music =musicRepository.findMusicById(id).orElse(null);
+        return music;
+    }
+
     public void addNewMusic(Music music) {
         Optional<Music> musicOptional = musicRepository.findMusicById(music.getId());
         if (musicOptional.isPresent()) {

@@ -22,6 +22,11 @@ public class ArtistService {
         return artistRepository.findAll();
     }
 
+    public Artist getArtist(Long id) {
+        Artist artist =artistRepository.findArtistById(id).orElse(null);
+        return artist;
+    }
+
     public void addNewArtist(Artist artist) {
         Optional<Artist> artistOptional = artistRepository.findArtistByEmail(artist.getArtistEmail());
         if (artistOptional.isPresent()) {

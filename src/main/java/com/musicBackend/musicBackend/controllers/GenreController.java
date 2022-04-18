@@ -1,14 +1,15 @@
 package com.musicBackend.musicBackend.controllers;
 
-
+import com.musicBackend.musicBackend.models.Member;
+import org.springframework.ui.Model;
 import com.musicBackend.musicBackend.models.Genre;
 import com.musicBackend.musicBackend.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.stereotype.Controller;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "genre")
 public class GenreController {
 
@@ -18,20 +19,27 @@ public class GenreController {
         this.genreService = genreService;
     }
     @GetMapping
-    public List<Genre> getGenres(){
+    public String getGenres(Model model){
 
-        return genreService.getGenre();
+        model.addAttribute("genre",genreService.getGenre());
+        return "genre";
     }
 
-    @PostMapping(path = "registerGenre")
-    public void registerNewGenre(@RequestBody Genre Genre) {
-
-        genreService.addNewGenre(Genre);
+    @GetMapping(path = "/registerGenre")
+    public String registerNewGenre(Model model) {
+        Genre genre = new Genre();
+        model.addAttribute("genre",genre);
+        return "newGenre";
+    }
+    @PostMapping("/saveGenre")
+    public String saveEmployee(@ModelAttribute("genre") Genre genre) {
+        genreService.addNewGenre(genre);
+        return "redirect:/";
     }
 
-    @DeleteMapping(path = "{GenreId}")
-    public void deleteGenre(@PathVariable("GenreId") Long GenreId){
-
+    @DeleteMapping(path = "/deleteGenre/{GenreId}")
+    public String deleteGenre(@PathVariable("GenreId") Long GenreId){
         genreService.deleteGenre(GenreId);
+        return "genre";
     }
 }

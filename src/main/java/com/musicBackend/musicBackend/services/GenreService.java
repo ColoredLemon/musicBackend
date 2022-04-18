@@ -20,6 +20,10 @@ public class GenreService {
 
         return genreRepository.findAll();
     }
+    public Genre getGenre(long id) {
+        Genre genre =genreRepository.findGenreById(id).orElse(null);
+        return genre;
+    }
 
     public void addNewGenre(Genre Genre) {
         Optional<Genre> GenreOptional = genreRepository.findGenreById(Genre.getId());

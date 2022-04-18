@@ -1,13 +1,13 @@
 package com.musicBackend.musicBackend.controllers;
-
+import org.springframework.ui.Model;
 import com.musicBackend.musicBackend.security.Login;
 import com.musicBackend.musicBackend.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.stereotype.Controller;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "login")
 public class LoginController {
 

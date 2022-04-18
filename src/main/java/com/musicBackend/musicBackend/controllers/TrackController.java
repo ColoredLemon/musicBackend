@@ -1,14 +1,14 @@
 package com.musicBackend.musicBackend.controllers;
 
-
+import org.springframework.ui.Model;
 import com.musicBackend.musicBackend.models.Track;
 import com.musicBackend.musicBackend.services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.stereotype.Controller;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "track")
 public class TrackController {
 
@@ -19,20 +19,22 @@ public class TrackController {
         this.trackService = trackService;
     }
     @GetMapping
-    public List<Track> getTracks(){
+    public String getTracks(Model model){
 
-        return trackService.getTracks();
+        model.addAttribute("getTrack",trackService.getTracks());
+        return "trackHome";
     }
 
     @PostMapping(path = "registerTrack")
-    public void registerNewTrack(@RequestBody Track Track) {
-
-        trackService.addNewTrack(Track);
+    public String registerNewTrack(Model model) {
+        Track track = new Track();
+        model.addAttribute("track",track);
+        return "newTrack";
     }
 
-    @DeleteMapping(path = "{TrackId}")
-    public void deleteTrack(@PathVariable("TrackId") Long TrackId){
-
+    @DeleteMapping(path = "/deleteTrack/{TrackId}")
+    public String deleteTrack(@PathVariable("TrackId") Long TrackId){
         trackService.deleteTrack(TrackId);
+        return "trackHome";
     }
 }

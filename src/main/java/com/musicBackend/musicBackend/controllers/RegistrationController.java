@@ -1,10 +1,10 @@
 package com.musicBackend.musicBackend.controllers;
-
+import org.springframework.ui.Model;
 import com.musicBackend.musicBackend.security.RegistrationRequest;
 import com.musicBackend.musicBackend.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.stereotype.Controller;
 @RestController
 @RequestMapping(path = "registration")
 @AllArgsConstructor
