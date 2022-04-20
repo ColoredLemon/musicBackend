@@ -5,10 +5,14 @@
     <title>THIS IS THE MEMBER PAGE FOR TESTING</title>
 </head>
 <body>
-<h1>THis is loading</h1>
-<tr th:each="member: ${allMemList}">
-    <td th:text="${member.firstName}"/>
-    <td th:text="${member.email}"/>
+<tbody>
+    <tr th:each="member:${allMemList}">
+        <td th:text="${member.firstName}"></td>
+        <td th:text="${member.email}"></td>
+    </td>
 </tr>
+</tbody>
+
+
 </body>
 </html>

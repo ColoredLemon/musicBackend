@@ -15,14 +15,14 @@ import java.util.List;
 
 @PreAuthorize("permitAll()")
 @Controller
-@RequestMapping(path = "members")
+//@RequestMapping(path = "member")
 @AllArgsConstructor
 public class MemberController {
 
         @Autowired
         private final MemberService memberService;
 
-    @GetMapping("/getAllMembers")
+    @GetMapping("/member")
     public String getMembers(Model model){
         model.addAttribute("allMemList", memberService.getListOfMembers());
         return "member";
@@ -38,12 +38,12 @@ public class MemberController {
     @PostMapping("/saveMember")
     public String saveEmployee(@ModelAttribute("member") Member member) {
         memberService.addNewMember(member);
-        return "redirect:/";
+        return "redirect:/member";
     }
     @DeleteMapping(path = "/deleteMember/{memberId}")
     public String deleteMember(@PathVariable("memberId") Long memberId){
        memberService.deleteMember(memberId);
-       return "member";
+       return "redirect:/member";
     }
 
     @PutMapping(path = "/updateMember/{memberId}")
@@ -52,7 +52,7 @@ public class MemberController {
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email){
         memberService.updateMember(memberId, name, email);
-        return "update";
+        return "redirect:/member";
     }
 
 

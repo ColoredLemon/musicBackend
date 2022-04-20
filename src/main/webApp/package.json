@@ -4,7 +4,7 @@
   "description": "poca-podcast-and-audio-template",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "start": "node_modules/.bin/gulp"
   },
   "author": "colorlib",
   "license": "CC-BY-3.0",
