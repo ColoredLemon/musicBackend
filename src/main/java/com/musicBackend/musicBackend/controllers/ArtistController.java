@@ -21,7 +21,12 @@ public class ArtistController {
     @GetMapping("getArtists")
     public String getArtist(Model model){
         model.addAttribute("getArtist",artistService.getArtist());
-        return "artistHome";
+        return "Artist2";
+    }
+
+    @GetMapping("/artistHome")
+    public String getArtistHome() {
+        return "Artist2";
     }
 
     @GetMapping("addArtist")
@@ -34,6 +39,6 @@ public class ArtistController {
     @DeleteMapping(path = "/deleteArtist/{artistId}")
     public String deleteArtist(@PathVariable("artistId") Long artistId){
         artistService.deleteArtist(artistId);
-        return "artistHome";
+        return "Artist2";
     }
 }

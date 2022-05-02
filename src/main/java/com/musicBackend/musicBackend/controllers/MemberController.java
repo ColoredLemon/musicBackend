@@ -1,6 +1,5 @@
 package com.musicBackend.musicBackend.controllers;
 
-import com.musicBackend.musicBackend.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
@@ -10,8 +9,6 @@ import com.musicBackend.musicBackend.services.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @PreAuthorize("permitAll()")
 @Controller
@@ -25,7 +22,7 @@ public class MemberController {
     @GetMapping("/member")
     public String getMembers(Model model){
         model.addAttribute("allMemList", memberService.getListOfMembers());
-        return "member";
+        return "Member";
     }
 
     @GetMapping("/addNewMember")

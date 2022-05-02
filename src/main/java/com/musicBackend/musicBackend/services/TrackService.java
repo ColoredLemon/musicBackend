@@ -14,9 +14,11 @@ public class TrackService {
     public TrackService(TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
     }
+
     public List<Track> getTracks() {
         return trackRepository.findAll();
     }
+
     public void addNewTrack(Track Track) {
         Optional<Track> TrackOptional = trackRepository.findTrackById(Track.getId());
         if (TrackOptional.isPresent()) {

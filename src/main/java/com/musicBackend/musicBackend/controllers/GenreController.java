@@ -22,7 +22,7 @@ public class GenreController {
     public String getGenres(Model model){
 
         model.addAttribute("genre",genreService.getGenre());
-        return "genre";
+        return "Genre";
     }
 
     @GetMapping(path = "/registerGenre")
@@ -40,6 +40,6 @@ public class GenreController {
     @DeleteMapping(path = "/deleteGenre/{GenreId}")
     public String deleteGenre(@PathVariable("GenreId") Long GenreId){
         genreService.deleteGenre(GenreId);
-        return "genre";
+        return "Genre";
     }
 }

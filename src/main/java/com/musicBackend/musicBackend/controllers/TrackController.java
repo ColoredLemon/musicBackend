@@ -18,23 +18,24 @@ public class TrackController {
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
+
+
     @GetMapping
     public String getTracks(Model model){
-
-        model.addAttribute("getTrack",trackService.getTracks());
-        return "trackHome";
+        model.addAttribute("getTracks",trackService.getTracks());
+        return "UserLibrary";
     }
 
     @PostMapping(path = "registerTrack")
     public String registerNewTrack(Model model) {
         Track track = new Track();
         model.addAttribute("track",track);
-        return "newTrack";
+        return "UserLibrary";
     }
 
     @DeleteMapping(path = "/deleteTrack/{TrackId}")
     public String deleteTrack(@PathVariable("TrackId") Long TrackId){
         trackService.deleteTrack(TrackId);
-        return "trackHome";
+        return "UserLibrary";
     }
 }

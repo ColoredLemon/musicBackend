@@ -22,14 +22,14 @@ public class AdminController {
     @GetMapping("/getAdmin")
     public String getAdmin(Model model){
         model.addAttribute("getAdmin",adminService.getAdmin());
-        return "adminHome";
+        return "Admin";
     }
 
     @GetMapping("addAdmin")
     public String registerNewAdmin(Model model) {
         Admin admin = new Admin();
         model.addAttribute("admin",admin);
-        return "newAdmin";
+        return "Admin";
     }
     @PostMapping("/saveAdmin")
     public String saveEmployee(@ModelAttribute("admin") Admin admin) {
@@ -40,6 +40,6 @@ public class AdminController {
     @DeleteMapping(path = "/deleteAdmin/{adminId}")
     public String deleteadmin(@PathVariable("adminId") Long adminId){
         adminService.deleteAdmin(adminId);
-        return "adminHome";
+        return "Admin";
     }
 }

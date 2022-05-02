@@ -2,6 +2,7 @@ package com.musicBackend.musicBackend.services;
 
 import com.musicBackend.musicBackend.models.AppUserRole;
 import com.musicBackend.musicBackend.models.Member;
+import com.musicBackend.musicBackend.models.MemberDTO;
 import com.musicBackend.musicBackend.security.RegistrationRequest;
 import com.musicBackend.musicBackend.security.token.ConfirmationToken;
 import com.musicBackend.musicBackend.security.token.ConfirmationTokenService;
@@ -20,19 +21,19 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     //private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
+    public String register(MemberDTO memberDTO) {
         boolean isValidEmail = emailValidator.
-                test(request.getEmail());
+                test(memberDTO.getEmail());
 
         if (!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
         String token = memberService.signUpMember(
                 new Member(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                request.getPassword(),
+                memberDTO.getFirstName(),
+                        memberDTO.getLastName(),
+                        memberDTO.getEmail(),
+                        memberDTO.getPassword(),
                 AppUserRole.USER
         )
         );
